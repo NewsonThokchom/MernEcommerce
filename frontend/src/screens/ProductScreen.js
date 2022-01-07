@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+// import products from '../products'
+import axios from 'axios'
 // import Product from '../components/Product'
 
 const ProductScreen = ({ match }) => {
 
     const { id } = useParams()
+    // const product = products.find((p) => p._id === id)
 
-    const product = products.find((p) => p._id === id)
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data } = await axios.get(`/api/products/${id}`)
+            setProduct(data)
+        }
+
+        fetchProduct()
+
+    }, [match]) //it also works without this match dependencies on line 24
+
 
     return (
         <>
@@ -64,7 +77,7 @@ const ProductScreen = ({ match }) => {
 
                             <ListGroup.Item>
                                 <div className="d-grid gap-2">
-                                    <Button className="btn btn-block" disabled={product.countInStock == 0}>Add To Cart</Button>
+                                    <Button className="btn btn-block" disabled={product.countInStock === 0}>Add To Cart</Button>
                                 </div>
                                 {/* <Button className='btn btn-block' type='button'>Add To Cart</Button> */}
                             </ListGroup.Item>
