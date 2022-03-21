@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { productListReducer } from './reducers/productReducers';
+import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 
 
 //combineReducers turns an object whose values are different reducer functions,into a single reducer function.
@@ -10,6 +10,7 @@ import { productListReducer } from './reducers/productReducers';
 // whose keys correspond to the key of the passed reducer function 
 const reducer = combineReducers({
     productList: productListReducer,
+    productDetails: productDetailsReducer,
 })
 
 const initialState = {}
