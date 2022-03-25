@@ -1,8 +1,8 @@
 import React from 'react';
-import { spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 
 const Loader = () => {
-    return <spinner
+    return <Spinner
         animation="border"
         role="status"
         style={{
@@ -11,8 +11,8 @@ const Loader = () => {
             margin: 'auto',
             display: 'block'
         }}>
-        <span class="sr-only">Loading...</span>
-    </spinner>;
+        <span className="sr-only">Loading...</span>
+    </Spinner>;
 };
 
 export default Loader;
