@@ -22,9 +22,9 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<HomeScreen />} />
-            <Route path="/product/:id" element={<ProductScreen />} exact />
+            <Route path="/product/:id" element={<ProductScreen />} /> {/*no need to use exact in react router v6*/}
             {/* <Route path="/cart/:id?" element={<CartScreen />} exact /> */}
-            <Route path="/cart/:id?" element={<CartScreen />} exact />
+            <Route path="/cart/:id" element={<CartScreen />} />
 
           </Routes>
           {/* <HomeScreen /> */}

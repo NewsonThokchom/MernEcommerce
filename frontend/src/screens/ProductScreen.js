@@ -9,7 +9,8 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 // import Product from '../components/Product'
 
-const ProductScreen = ({ history, match }) => {
+const ProductScreen = ({ match }) => {
+    // const ProductScreen = ({ history, match }) => {
 
     const [qty, setQty] = useState(1)
 

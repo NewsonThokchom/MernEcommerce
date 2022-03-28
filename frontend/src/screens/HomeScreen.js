@@ -1,7 +1,7 @@
 // import React, { useState, useEffect } from 'react' //useState wont use if we use useDispatch
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Alert } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import Product from "../components/Product";
 import Message from '../components/Message'
 import Loader from '../components/Loader';
