@@ -25,6 +25,7 @@ const App = () => {
             <Route path="/product/:id" element={<ProductScreen />} /> {/*no need to use exact in react router v6*/}
             {/* <Route path="/cart/:id?" element={<CartScreen />} exact /> */}
             <Route path="/cart/:id" element={<CartScreen />} />
+            <Route path="/cart" element={<CartScreen />} />
 
           </Routes>
           {/* <HomeScreen /> */}
