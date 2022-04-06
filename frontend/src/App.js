@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const App = () => {
   return (
@@ -21,11 +22,12 @@ const App = () => {
           </Routes> */}
 
           <Routes>
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} /> {/*no need to use exact in react router v6*/}
             {/* <Route path="/cart/:id?" element={<CartScreen />} exact /> */}
             <Route path="/cart/:id" element={<CartScreen />} />
             <Route path="/cart" element={<CartScreen />} />
+            <Route path="/" element={<HomeScreen />} />
 
           </Routes>
           {/* <HomeScreen /> */}
