@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Form, Row, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -21,6 +21,9 @@ const ProfileScreen = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+    const { success } = userUpdateProfile
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -31,7 +34,6 @@ const ProfileScreen = () => {
             if (!user.name) {
                 dispatch(getUserDetails('profile'))
             } else {
-                console.log(user.name);
                 setName(user.name)
                 setEmail(user.email)
             }
@@ -45,6 +47,9 @@ const ProfileScreen = () => {
             setMessage('Passwords do not match')
         } else {
             // DISPATCH UPDATE PROFILE
+            dispatch(
+                updateUserProfile({ id: user._id, name, email, password })
+            )
         }
     }
 
@@ -56,6 +61,7 @@ const ProfileScreen = () => {
                 <h2>User Profile</h2>
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
+                {success && <Message variant='success'>Profile Updated</Message>}
                 {loading && <Loader />}
                 {/* {loading ? (<Loader />) : <Message variant='danger'>{error}</Message>} */}
 
