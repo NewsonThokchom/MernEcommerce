@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Form, Row, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
 import { login } from '../actions/userActions.js'
@@ -19,21 +19,17 @@ const LoginScreen = () => {
     const { loading, error, userInfo } = userLogin
 
     // const redirect = location.search ? location.search.split('=')[1] : '/'
-    // console.log(redirect)
-
-    let redirect = useLocation()
-
+    const [searchParams] = useSearchParams() //useSearcgParams to get query string in react router dom v6
+    let redirect = searchParams.get('redirect')
     // const [redirect] = useSearchParams();
-    redirect = redirect.search ? redirect.pathname : '/'
-
     let navigate = useNavigate();
 
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect)
-            // navigate('/')
-            console.log(redirect)
+            // console.log(redirect)
+            redirect ? navigate(`/${redirect}`) : navigate('/')
+            // navigate(`/${redirect}`)
         }
     }, [navigate, userInfo, redirect])
 
@@ -72,12 +68,13 @@ const LoginScreen = () => {
 
             <Row className='py-3'>
                 <Col>New Customer?{' '}
-                    {/* <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> */}
+                    {/* <Link to={redirect ? `/ register ? redirect = ${ redirect }` : '/register'}> */}
                     {/* <Link to={'/register'}> */}
-                    {/* <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> */}
+                    {/* <Link to={redirect ? `/ register ? redirect = ${ redirect }` : '/register'}> */}
                     {/* Register
                     </Link> */}
 
+                    {/* <Link to={redirect ? `/register ? redirect = ${redirect}` : '/register'}> */}
                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
                         Register
                     </Link>

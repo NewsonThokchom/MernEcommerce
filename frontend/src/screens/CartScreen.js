@@ -34,10 +34,10 @@ const CartScreen = () => {
         dispatch(removeFromCart(id))
     }
 
-    const checkoutHandler = () => {
-        console.log('Checkout')
-        navigate('/login?redirect=shipping')
 
+    const checkoutHandler = () => {
+        // history.push('/login?redirect=shipping')
+        navigate('/login?redirect=shipping')
     }
 
     return <Row>
@@ -108,7 +108,7 @@ const CartScreen = () => {
             <Card>
                 <ListGroup variant="flush">
                     <ListGroup.Item>
-                        <h2>Sub Total ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
+                        <h2>Sub Total ({cartItems.reduce((acc, item) => parseFloat(acc) + parseFloat(item.qty), 0)}) items</h2>
 
                         ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                     </ListGroup.Item>

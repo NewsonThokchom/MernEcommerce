@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { register } from '../actions/userActions.js'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
@@ -21,8 +21,12 @@ const RegisterScreen = () => {
     const userRegister = useSelector((state) => state.userRegister)
     const { loading, error, userInfo } = userRegister
 
-    let redirect = useLocation()
-    redirect = redirect.search ? redirect.pathname : '/'
+    // let redirect = useLocation()
+    // redirect = redirect.search ? redirect.pathname : '/'
+
+    // const redirect = location.search ? location.search.split('=')[1] : '/'
+    const [searchParams] = useSearchParams() //useSearcgParams to get query string in react router dom v6
+    let redirect = searchParams.get('redirect')
 
     // str.split("_").pop() //remove character from a string
 
